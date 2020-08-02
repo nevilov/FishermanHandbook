@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,15 +24,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-
+    private ListView list;
     private DrawerLayout drawer;
+    private String[] array;
+    private ArrayAdapter<String> adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        list = findViewById(R.id.listView);
+        array  = getResources().getStringArray(R.array.fish_array); // Находим массив с рыбами
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, array); //Синхронизируем адаптер и массив
+        list.setAdapter(adapter);//Синхронизируем LW и адаптер
+
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
