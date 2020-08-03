@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:animationCache="false"
-    android:background="@drawable/side_nav_bar"
+    android:background="@mipmap/Background"
     android:baselineAligned="false"
     android:gravity="bottom"
     android:hapticFeedbackEnabled="false"
