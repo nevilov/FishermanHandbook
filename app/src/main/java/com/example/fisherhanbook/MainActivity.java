@@ -23,6 +23,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ListView list;
     private DrawerLayout drawer;
@@ -39,10 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         list = findViewById(R.id.listView);
         array  = getResources().getStringArray(R.array.fish_array); // Находим массив с рыбами
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, array); //Синхронизируем адаптер и массив
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array))); //Синхронизируем адаптер и массив
         list.setAdapter(adapter);//Синхронизируем LW и адаптер
-
-
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         drawer = findViewById(R.id.drawer_layout);
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -64,15 +64,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) { //Слушитель нажатий
         int id = item.getItemId();
-        if(id == R.id.nav_home){
-            Toast.makeText(this, "Привет, домой", Toast.LENGTH_SHORT).show();
 
+        switch (id){
+            case R.id.fish:
+                array = getResources().getStringArray(R.array.fish_array);
+                adapter.clear();
+                adapter.addAll(array); // Добавляем новые элементы массива
+                adapter.notifyDataSetChanged(); // Обновляем новые элементы массива
+               // Toast.makeText(this, "Привет, домой", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.bait:
+                array = getResources().getStringArray(R.array.bait);
+                adapter.clear();
+                adapter.addAll(array);
+                adapter.notifyDataSetChanged();
+                break;
+            case R.id.tackle:
+                array = getResources().getStringArray(R.array.tackle);
+                adapter.clear();
+                adapter.addAll(array);
+                adapter.notifyDataSetChanged();
+                break;
         }
-        else if(id == R.id.nav_gallery)
-        {
-            Toast.makeText(this,  "Привет, галерея", Toast.LENGTH_SHORT).show();
 
-        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

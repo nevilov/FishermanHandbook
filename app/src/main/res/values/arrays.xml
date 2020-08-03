@@ -5,7 +5,12 @@
         <item>Щука</item>
         <item>Лось</item>
     </string-array>
-    <string-array name="trickle">
+    <string-array name="tackle">
+        <item>Удочка</item>
+        <item>Спиннинг</item>
+        <item>Донная снать (Донка)</item>
+    </string-array>
+    <string-array name="bait">
         <item>Кукуруза</item>
         <item>Хлеб</item>
         <item>Червяк</item>
