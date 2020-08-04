@@ -7,14 +7,14 @@
         <item
             android:id="@+id/fish"
             android:icon="@drawable/ic_fish"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_fish" />
         <item
             android:id="@+id/bait"
             android:icon="@drawable/ic_trackle2"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_bait" />
         <item
             android:id="@+id/tackle"
             android:icon="@drawable/ic_trackle"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_tackle" />
     </group>
 </menu>

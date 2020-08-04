@@ -1,9 +1,11 @@
 package com.example.fisherhanbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,13 +33,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private String[] array;
     private ArrayAdapter<String> adapter;
+    private Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         list = findViewById(R.id.listView);
@@ -47,10 +52,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         drawer = findViewById(R.id.drawer_layout);
-        navigationView.setNavigationItemSelectedListener(this); // Добавляем в меню кнопку
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        navigationView.setNavigationItemSelectedListener(this); // Указание, что слушатель нажатий находится здесь
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close); //Добавляем в меню кнопку
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this,TextContent.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.fish:
+                toolbar.setTitle(R.string.menu_fish);
                 array = getResources().getStringArray(R.array.fish_array);
                 adapter.clear();
                 adapter.addAll(array); // Добавляем новые элементы массива
@@ -74,12 +89,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                // Toast.makeText(this, "Привет, домой", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bait:
+                toolbar.setTitle(R.string.menu_bait);
                 array = getResources().getStringArray(R.array.bait);
                 adapter.clear();
                 adapter.addAll(array);
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.tackle:
+                toolbar.setTitle(R.string.menu_tackle);
                 array = getResources().getStringArray(R.array.tackle);
                 adapter.clear();
                 adapter.addAll(array);
