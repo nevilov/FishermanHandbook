@@ -39,33 +39,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        list = findViewById(R.id.listView);
-        array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array))); //Синхронизируем адаптер и массив
-        list.setAdapter(adapter);//Синхронизируем LW и адаптер
+            list = findViewById(R.id.listView);
+            array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array))); //Синхронизируем адаптер и массив
+            list.setAdapter(adapter);//Синхронизируем LW и адаптер
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        drawer = findViewById(R.id.drawer_layout);
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            drawer = findViewById(R.id.drawer_layout);
 
-        navigationView.setNavigationItemSelectedListener(this); // Указание, что слушатель нажатий находится здесь
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close); //Добавляем в меню кнопку
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+            navigationView.setNavigationItemSelectedListener(this); // Указание, что слушатель нажатий находится здесь
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close); //Добавляем в меню кнопку
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
 
-        /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
+            /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int id, long position) {
+                @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this,TextContent.class);
-                startActivity(intent);
+
                 /*Передаем значения в другой Activity*/
-                intent.putExtra("Category",IndexCategory);
-                intent.putExtra("Position",position);
+                intent.putExtra("category",IndexCategory);
+                intent.putExtra("position",position);
+
+                startActivity(intent);
 
             }
         });

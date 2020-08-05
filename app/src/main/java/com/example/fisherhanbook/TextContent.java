@@ -1,6 +1,7 @@
 package com.example.fisherhanbook;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,11 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
+import java.lang.reflect.Type;
 
 public class TextContent extends AppCompatActivity {
     private int category = 0;
     private int position = 0;
+
+    private Typeface face;
 
     private int [] arrayFish = { R.string.FishInfo_Som, R.string.FishInfo_Karas, R.string.FishInfo_Karp}; //Массив для рыб, индекс элементов массива arrays должны совпадать с номером information
     private int [] arrayBait = {R.string.BaitInfo_Bread}; //Массив для снастей
@@ -28,16 +31,16 @@ public class TextContent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_content);
 
-        iContent = findViewById(R.id.ImageContent);
-        TextContent = findViewById(R.id.text_fish);
+        init();
 
         reciveIntent();
     }
+
     private void reciveIntent(){
         Intent i = getIntent();
         if(i!= null){ //Получаем данные
-            category = i.getIntExtra("Category",0);
-            position = i.getIntExtra("Position",0);
+            category = i.getIntExtra("category",0);
+            position = i.getIntExtra("position",0);
         }
         switch (category) {
             case 0:
@@ -52,6 +55,16 @@ public class TextContent extends AppCompatActivity {
                 break;
 
         }
+
+    }
+
+    private void init(){
+        iContent = findViewById(R.id.ImageContent);
+        TextContent = findViewById(R.id.TextContent);
+
+        face = Typeface.createFromAsset(this.getAssets(),"fonts/Pribambas-Regular.ttf");
+        TextContent.setTypeface(face);
+
 
     }
 }
