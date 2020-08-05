@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="fish_array">
+    <string-array name="fish">
+        <item>Сом</item>
+        <item>Карась</item>
         <item>Карп</item>
-        <item>Щука</item>
-        <item>Лось</item>
+    </string-array>
+    <string-array name="bait">
+        <item>Хлеб</item>
+        <item>Кукуруза</item>
+        <item>Червяк</item>
     </string-array>
     <string-array name="tackle">
         <item>Удочка</item>
         <item>Спиннинг</item>
         <item>Донная снать (Донка)</item>
     </string-array>
-    <string-array name="bait">
-        <item>Кукуруза</item>
-        <item>Хлеб</item>
-        <item>Червяк</item>
-    </string-array>
+
 </resources>

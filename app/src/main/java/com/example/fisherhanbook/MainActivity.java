@@ -34,24 +34,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String[] array;
     private ArrayAdapter<String> adapter;
     private Toolbar toolbar;
-
+    private int IndexCategory = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         list = findViewById(R.id.listView);
-        array  = getResources().getStringArray(R.array.fish_array); // Находим массив с рыбами
+        array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array))); //Синхронизируем адаптер и массив
         list.setAdapter(adapter);//Синхронизируем LW и адаптер
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         drawer = findViewById(R.id.drawer_layout);
+
         navigationView.setNavigationItemSelectedListener(this); // Указание, что слушатель нажатий находится здесь
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close); //Добавляем в меню кнопку
         drawer.addDrawerListener(toggle);
@@ -60,14 +60,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int id, long position) {
                 Intent intent = new Intent(MainActivity.this,TextContent.class);
                 startActivity(intent);
+                /*Передаем значения в другой Activity*/
+                intent.putExtra("Category",IndexCategory);
+                intent.putExtra("Position",position);
+
             }
         });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -82,11 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id){
             case R.id.fish:
                 toolbar.setTitle(R.string.menu_fish);
-                array = getResources().getStringArray(R.array.fish_array);
+                array = getResources().getStringArray(R.array.fish);
                 adapter.clear();
                 adapter.addAll(array); // Добавляем новые элементы массива
                 adapter.notifyDataSetChanged(); // Обновляем новые элементы массива
                // Toast.makeText(this, "Привет, домой", Toast.LENGTH_SHORT).show();
+                IndexCategory = 0;
                 break;
             case R.id.bait:
                 toolbar.setTitle(R.string.menu_bait);
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 adapter.clear();
                 adapter.addAll(array);
                 adapter.notifyDataSetChanged();
+                IndexCategory = 1;
                 break;
             case R.id.tackle:
                 toolbar.setTitle(R.string.menu_tackle);
@@ -101,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 adapter.clear();
                 adapter.addAll(array);
                 adapter.notifyDataSetChanged();
+                IndexCategory = 2;
                 break;
         }
 
