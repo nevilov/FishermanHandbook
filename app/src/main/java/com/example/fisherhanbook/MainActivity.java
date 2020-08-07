@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toggle.syncState();
 
             /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this,TextContent.class);

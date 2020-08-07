@@ -64,7 +64,5 @@ public class TextContent extends AppCompatActivity {
 
         face = Typeface.createFromAsset(this.getAssets(),"fonts/Pribambas-Regular.ttf");
         TextContent.setTypeface(face);
-
-
     }
 }
