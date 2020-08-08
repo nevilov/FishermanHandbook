@@ -9,5 +9,6 @@
     <string name="menu_fish">Рыба</string>
     <string name="menu_bait">Наживка</string>
     <string name="menu_tackle">Снасти</string>
+    <string name="click_to_start">Click To Start</string>
 
 </resources>
