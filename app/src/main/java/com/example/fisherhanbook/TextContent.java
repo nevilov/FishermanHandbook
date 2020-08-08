@@ -65,4 +65,8 @@ public class TextContent extends AppCompatActivity {
         face = Typeface.createFromAsset(this.getAssets(),"fonts/Pribambas-Regular.ttf");
         TextContent.setTypeface(face);
     }
+/*    private void fillCategory(int XarrayName, int Xposition) {
+        TextContent.setText(XarrayName[Xposition]); // Мы передаем в TW массив, индексом которого является номер элемента
+        iContent.setImageResource(ImageFishArray[position]);
+    }*/
 }

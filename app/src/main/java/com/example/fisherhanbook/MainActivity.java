@@ -86,33 +86,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.fish:
-                toolbar.setTitle(R.string.menu_fish);
-                array = getResources().getStringArray(R.array.fish);
-                adapter.clear();
-                adapter.addAll(array); // Добавляем новые элементы массива
-                adapter.notifyDataSetChanged(); // Обновляем новые элементы массива
-               // Toast.makeText(this, "Привет, домой", Toast.LENGTH_SHORT).show();
-                IndexCategory = 0;
+                fillArray(R.string.menu_fish, R.array.fish, 0);
                 break;
             case R.id.bait:
-                toolbar.setTitle(R.string.menu_bait);
-                array = getResources().getStringArray(R.array.bait);
-                adapter.clear();
-                adapter.addAll(array);
-                adapter.notifyDataSetChanged();
-                IndexCategory = 1;
+                fillArray(R.string.menu_bait, R.array.bait, 1);
                 break;
             case R.id.tackle:
-                toolbar.setTitle(R.string.menu_tackle);
-                array = getResources().getStringArray(R.array.tackle);
-                adapter.clear();
-                adapter.addAll(array);
-                adapter.notifyDataSetChanged();
-                IndexCategory = 2;
+                fillArray(R.string.menu_tackle, R.array.tackle, 2);
                 break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void fillArray (int title, int arrayName, int index){
+        toolbar.setTitle(title);
+        array = getResources().getStringArray(arrayName);
+        adapter.clear();
+        adapter.addAll(array);
+        adapter.notifyDataSetChanged();
+        IndexCategory = index;
     }
 }
