@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".StartActivity"
+            android:name="com.example.fishermanhandbook.StartActivity"
             android:noHistory="true"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar.Ever">
@@ -23,9 +23,9 @@
 
         </activity>
 
-        <activity android:name=".TextContent" />
+        <activity android:name="com.example.fishermanhandbook.TextContent" />
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.example.fishermanhandbook.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data

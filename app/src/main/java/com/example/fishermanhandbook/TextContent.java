@@ -1,4 +1,4 @@
-package com.example.fisherhanbook;
+package com.example.fishermanhandbook;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fisherhanbook.R;
 
 import java.lang.reflect.Type;
 
