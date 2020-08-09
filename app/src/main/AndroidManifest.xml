@@ -12,8 +12,9 @@
 
         <activity
             android:name=".StartActivity"
+            android:noHistory="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.Ever">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +27,10 @@
 
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
