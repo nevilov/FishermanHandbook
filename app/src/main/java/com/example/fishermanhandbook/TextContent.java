@@ -7,11 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fisherhanbook.R;
-
-import java.lang.reflect.Type;
 
 public class TextContent extends AppCompatActivity {
     private int category = 0;
@@ -19,14 +18,21 @@ public class TextContent extends AppCompatActivity {
 
     private Typeface face;
 
+    /*FISH*/
     private int [] arrayFish = { R.string.FishInfo_Som, R.string.FishInfo_Karas, R.string.FishInfo_Karp}; //Массив для рыб, индекс элементов массива arrays должны совпадать с номером information
+    private int [] ImageFishArray = {R.drawable.som, R.drawable.karas, R.drawable.karp}; //Массив для картинок с рыбами
+    private String [] titleFish = {"Сом", "Карась", "Карп"};
+
+    /*BAIT*/
     private int [] arrayBait = {R.string.BaitInfo_Bread}; //Массив для снастей
+
+    /*TACKLE*/
     private int [] arrayTackle = {R.string.TackleInfo_FishingRod};
 
-    private int [] ImageFishArray = {R.drawable.som, R.drawable.karas, R.drawable.karp}; //Массив для картинок с рыбами
 
     private ImageView iContent;
     private TextView TextContent;
+    private ActionBar actionBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState/*, @Nullable PersistableBundle persistentState*/) {
@@ -48,6 +54,7 @@ public class TextContent extends AppCompatActivity {
             case 0:
                 TextContent.setText(arrayFish[position]); // Мы передаем в TW массив, индексом которого является номер элемента
                 iContent.setImageResource(ImageFishArray[position]);
+                actionBar.setTitle(titleFish[position]);
                 break;
             case 1:
                 TextContent.setText(arrayBait[position]);
@@ -66,6 +73,9 @@ public class TextContent extends AppCompatActivity {
 
         face = Typeface.createFromAsset(this.getAssets(),"fonts/Pribambas-Regular.ttf");
         TextContent.setTypeface(face);
+
+        actionBar = getSupportActionBar();
+
     }
 
 }

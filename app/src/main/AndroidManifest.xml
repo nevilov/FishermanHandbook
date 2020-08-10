@@ -27,6 +27,7 @@
 
         <activity android:name="com.example.fishermanhandbook.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.example.fishermanhandbook.settings.SettingsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

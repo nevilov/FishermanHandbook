@@ -24,13 +24,15 @@
         android:id="@+id/textView2"
         android:layout_width="355dp"
         android:layout_height="256dp"
-        android:layout_marginTop="188dp"
-        android:fontFamily="@font/ruslan_display"
+        android:layout_marginTop="400dp"
+        android:fontFamily="sans-serif-thin"
+        android:freezesText="false"
         android:gravity="center"
         android:text="@string/start_text"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

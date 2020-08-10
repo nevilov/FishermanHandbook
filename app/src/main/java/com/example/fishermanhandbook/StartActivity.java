@@ -14,7 +14,6 @@ import com.example.fisherhanbook.R;
 public class StartActivity extends Activity {
     private Animation logoApplication;
     private ImageView logoImage;
-    private Typeface startface;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
