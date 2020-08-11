@@ -12,4 +12,5 @@
 
     <string name="start_text">Справочник Рыбака</string>
 
+    <string name="SettingsTextSize">Размер текста</string>
 </resources>

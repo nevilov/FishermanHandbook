@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.fisherhanbook.R;
+import com.example.fishermanhandbook.settings.SettingsActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -73,6 +74,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
+            Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(i);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) { //Слушитель нажатий
