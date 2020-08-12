@@ -6,9 +6,9 @@
     </PreferenceCategory>
 
     <ListPreference
-        android:defaultValue="false"
+        android:defaultValue="Средний"
         android:entries="@array/mainTextsize"
         android:entryValues="@array/mainTextsize"
-        android:key="list_preference_1"
+        android:key="mainTextSize"
         android:title="@string/SettingsTextSize" />
 </PreferenceScreen>

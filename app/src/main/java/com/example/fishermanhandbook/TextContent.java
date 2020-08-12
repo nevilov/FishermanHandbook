@@ -1,11 +1,15 @@
 package com.example.fishermanhandbook;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +21,8 @@ public class TextContent extends AppCompatActivity {
     private int position = 0;
 
     private Typeface face;
+    private SharedPreferences textSizePreference;
+    private ActionBar actionBar;
 
     /*FISH*/
     private int [] arrayFish = { R.string.FishInfo_Som, R.string.FishInfo_Karas, R.string.FishInfo_Karp}; //Массив для рыб, индекс элементов массива arrays должны совпадать с номером information
@@ -32,15 +38,13 @@ public class TextContent extends AppCompatActivity {
 
     private ImageView iContent;
     private TextView TextContent;
-    private ActionBar actionBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState/*, @Nullable PersistableBundle persistentState*/) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_content);
-
         init();
-
+        getPreferences();
         reciveIntent();
     }
 
@@ -75,7 +79,30 @@ public class TextContent extends AppCompatActivity {
         TextContent.setTypeface(face);
 
         actionBar = getSupportActionBar();
-
+        actionBar.setDisplayHomeAsUpEnabled(true); // Устанавливаем AB
+    }
+    private void getPreferences(){
+        textSizePreference = PreferenceManager.getDefaultSharedPreferences(this); //Назначение основного preference
+        String textSize = textSizePreference.getString("mainTextSize","Средний");
+        if(textSize != null) {
+            switch (textSize) {
+                case "Маленький":
+                    TextContent.setTextSize(14);
+                    break;
+                case "Средний":
+                    TextContent.setTextSize(18);
+                    break;
+                case "Большоей":
+                    TextContent.setTextSize(24);
+                    break;
+            }
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
 }
