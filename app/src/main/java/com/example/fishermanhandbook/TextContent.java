@@ -54,6 +54,7 @@ public class TextContent extends AppCompatActivity {
             category = i.getIntExtra("category",0);
             position = i.getIntExtra("position",0);
         }
+
         switch (category) {
             case 0:
                 TextContent.setText(arrayFish[position]); // Мы передаем в TW массив, индексом которого является номер элемента
@@ -81,6 +82,7 @@ public class TextContent extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true); // Устанавливаем AB
     }
+
     private void getPreferences(){
         textSizePreference = PreferenceManager.getDefaultSharedPreferences(this); //Назначение основного preference
         String textSize = textSizePreference.getString("mainTextSize","Средний");
@@ -98,6 +100,7 @@ public class TextContent extends AppCompatActivity {
             }
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == android.R.id.home)
