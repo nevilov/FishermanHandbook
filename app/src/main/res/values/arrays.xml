@@ -5,6 +5,11 @@
         <item>Карась</item>
         <item>Карп</item>
     </string-array>
+    <string-array name="fish_last">
+        <item>Сомиус</item>
+        <item>Карасиус</item>
+        <item>Карпиус</item>
+    </string-array>
     <string-array name="bait">
         <item>Хлеб</item>
         <item>Кукуруза</item>

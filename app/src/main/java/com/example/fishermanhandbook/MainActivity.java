@@ -11,6 +11,8 @@ import android.widget.ListView;
 
 import com.example.fisherhanbook.R;
 import com.example.fishermanhandbook.settings.SettingsActivity;
+import com.example.fishermanhandbook.utils.CustomArrayAdapter;
+import com.example.fishermanhandbook.utils.ListItemClass;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -22,14 +24,22 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ListView list;
     private DrawerLayout drawer;
-    private String[] array;
-    private ArrayAdapter<String> adapter;
+    private String[] array,secName;
+    private CustomArrayAdapter adapter;
     private Toolbar toolbar;
     private int IndexCategory = 0;
+    private List<ListItemClass> ListItemMain;
+    private ListItemClass listItem;
+
+
+
+
+    private int [] ArrayFishImages = new int[]{R.drawable.som,R.drawable.karas,R.drawable.karp};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +51,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             list = findViewById(R.id.listView);
             array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array))); //Синхронизируем адаптер и массив
+            secName = getResources().getStringArray(R.array.fish_last);
+            ListItemMain = new ArrayList<>();
+            for(int i =0 ;i< array.length;i++){
+                listItem = new ListItemClass();
+                listItem.setNameItem(array[i]);
+                listItem.setSecName(secName[i]);
+                listItem.setImageID(ArrayFishImages[i]);
+
+                ListItemMain.add(listItem);
+            }
+            adapter = new CustomArrayAdapter(this,R.layout.listview_item, ListItemMain,getLayoutInflater());
+
+
+            //Синхронизируем адаптер и массив
             list.setAdapter(adapter);//Синхронизируем LW и адаптер
 
             NavigationView navigationView = findViewById(R.id.nav_view);
@@ -91,13 +114,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.fish:
-                fillArray(R.string.menu_fish, R.array.fish, 0);
+                adapter.clear();
+                array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
+                secName = getResources().getStringArray(R.array.fish_last);
+                for(int i =0 ;i< array.length;i++){
+                    listItem = new ListItemClass();
+                    listItem.setNameItem(array[i]);
+                    listItem.setSecName(secName[i]);
+                    listItem.setImageID(ArrayFishImages[i]);
+
+                    ListItemMain.add(listItem);
+                }
+                adapter.notifyDataSetChanged();
                 break;
             case R.id.bait:
-                fillArray(R.string.menu_bait, R.array.bait, 1);
+                for(int i =0 ;i< array.length;i++){
+                    listItem = new ListItemClass();
+                    listItem.setNameItem(array[i]);
+                    listItem.setSecName(secName[i]);
+                    listItem.setImageID(ArrayFishImages[i]);
+
+                    ListItemMain.add(listItem);
+                }
+                adapter.notifyDataSetChanged();
                 break;
             case R.id.tackle:
-                fillArray(R.string.menu_tackle, R.array.tackle, 2);
+                for(int i =0 ;i< array.length;i++){
+                    listItem = new ListItemClass();
+                    listItem.setNameItem(array[i]);
+                    listItem.setSecName(secName[i]);
+                    listItem.setImageID(ArrayFishImages[i]);
+
+                    ListItemMain.add(listItem);
+                }
+                adapter.notifyDataSetChanged();
                 break;
         }
 
@@ -109,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle(title);
         array = getResources().getStringArray(arrayName);
         adapter.clear();
-        adapter.addAll(array);
+       // adapter.addAll(array);
         adapter.notifyDataSetChanged();
         IndexCategory = index;
     }
