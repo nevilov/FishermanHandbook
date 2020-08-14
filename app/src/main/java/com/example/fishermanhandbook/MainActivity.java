@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
             secName = getResources().getStringArray(R.array.fish_last);
             ListItemMain = new ArrayList<>();
+
             for(int i =0 ;i< array.length;i++){
                 listItem = new ListItemClass();
                 listItem.setNameItem(array[i]);
@@ -94,6 +96,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        /*SEARCH*/
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
         return true;
     }
 
@@ -163,4 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.notifyDataSetChanged();
         IndexCategory = index;
     }
+
+
 }
