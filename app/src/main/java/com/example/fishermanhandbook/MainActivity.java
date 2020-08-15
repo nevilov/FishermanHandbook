@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListItemClass listItem;
 
 
-
-
     private int [] ArrayFishImages = new int[]{R.drawable.som,R.drawable.karas,R.drawable.karp};
+    private int [] ArrayBaitImages = new int[]{R.drawable.som,R.drawable.karas,R.drawable.karp};
+    private int [] ArrayTackleImages = new int []{R.drawable.som,R.drawable.karas,R.drawable.karp};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
-            list = findViewById(R.id.listView);
-            array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
-            secName = getResources().getStringArray(R.array.fish_last);
-            ListItemMain = new ArrayList<>();
-
-            for(int i =0 ;i< array.length;i++){
-                listItem = new ListItemClass();
-                listItem.setNameItem(array[i]);
-                listItem.setSecName(secName[i]);
-                listItem.setImageID(ArrayFishImages[i]);
-
-                ListItemMain.add(listItem);
-            }
-            adapter = new CustomArrayAdapter(this,R.layout.listview_item, ListItemMain,getLayoutInflater());
-
-
-            //Синхронизируем адаптер и массив
-            list.setAdapter(adapter);//Синхронизируем LW и адаптер
+            writeFirstArrays();
 
             NavigationView navigationView = findViewById(R.id.nav_view);
             drawer = findViewById(R.id.drawer_layout);
@@ -77,25 +59,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.addDrawerListener(toggle);
             toggle.syncState();
 
-            /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
-            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this,TextContent.class);
-
-                /*Передаем значения в другой Activity*/
-                intent.putExtra("category",IndexCategory);
-                intent.putExtra("position",position);
-
-                startActivity(intent);
-
-            }
-        });
+            itemListener();
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
         /*SEARCH*/
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
@@ -132,55 +103,79 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.fish:
-                adapter.clear();
-                array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
-                secName = getResources().getStringArray(R.array.fish_last);
-                for(int i =0 ;i< array.length;i++){
-                    listItem = new ListItemClass();
-                    listItem.setNameItem(array[i]);
-                    listItem.setSecName(secName[i]);
-                    listItem.setImageID(ArrayFishImages[i]);
-
-                    ListItemMain.add(listItem);
-                }
-                adapter.notifyDataSetChanged();
+                FillArray(R.array.fish,R.array.fish_last,ArrayFishImages,0, R.string.menu_fish);
                 break;
             case R.id.bait:
-                for(int i =0 ;i< array.length;i++){
-                    listItem = new ListItemClass();
-                    listItem.setNameItem(array[i]);
-                    listItem.setSecName(secName[i]);
-                    listItem.setImageID(ArrayFishImages[i]);
-
-                    ListItemMain.add(listItem);
-                }
-                adapter.notifyDataSetChanged();
+                FillArray(R.array.bait,R.array.bait_last,ArrayBaitImages,1,R.string.menu_bait);
                 break;
             case R.id.tackle:
-                for(int i =0 ;i< array.length;i++){
-                    listItem = new ListItemClass();
-                    listItem.setNameItem(array[i]);
-                    listItem.setSecName(secName[i]);
-                    listItem.setImageID(ArrayFishImages[i]);
-
-                    ListItemMain.add(listItem);
-                }
-                adapter.notifyDataSetChanged();
-                break;
+                FillArray(R.array.tackle,R.array.tackle_last,ArrayTackleImages,2,R.string.menu_tackle);
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void fillArray (int title, int arrayName, int index){
+    private void itemListener(){
+        /*Слушатель на нажатия отдельных итемов (вывод экрана при нажатии на итем)*/
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this,TextContent.class);
+
+                /*Передаем значения в другой Activity*/
+                intent.putExtra("category",IndexCategory);
+                intent.putExtra("position",position);
+
+                startActivity(intent);
+
+            }
+        });
+
+    }
+
+    private void FillArray(int nameArray, int SyntfcNameArray,int[] images, int index,int title){
+        toolbar.setTitle(title);
+        if(adapter!=null)
+            adapter.clear();
+        array  = getResources().getStringArray(nameArray); // Находим массив с рыбами
+        secName = getResources().getStringArray(SyntfcNameArray);
+        for(int i =0 ;i< array.length;i++){
+            listItem = new ListItemClass();
+            listItem.setNameItem(array[i]);
+            listItem.setSecName(secName[i]);
+            listItem.setImageID(images[i]);
+            ListItemMain.add(listItem);
+        }
+        IndexCategory = index;
+        adapter.notifyDataSetChanged();
+    }
+
+    private void writeFirstArrays(){
+        list = findViewById(R.id.listView);
+        array  = getResources().getStringArray(R.array.fish); // Находим массив с рыбами
+        secName = getResources().getStringArray(R.array.fish_last);
+        ListItemMain = new ArrayList<>();
+
+        adapter = new CustomArrayAdapter(this,R.layout.listview_item, ListItemMain,getLayoutInflater());
+        //Синхронизируем адаптер и массив
+        list.setAdapter(adapter);//Синхронизируем LW и адаптер
+
+        FillArray(R.array.fish,R.array.fish_last,ArrayFishImages,0, R.string.menu_fish);
+
+
+    }
+
+
+  /*  private void fillArray (int title, int arrayName, int index){
         toolbar.setTitle(title);
         array = getResources().getStringArray(arrayName);
         adapter.clear();
-       // adapter.addAll(array);
+        adapter.addAll(array);
         adapter.notifyDataSetChanged();
         IndexCategory = index;
     }
+*/
 
 
 }
