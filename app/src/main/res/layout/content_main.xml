@@ -7,7 +7,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-
+<!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#A3A3A3"
+        android:orientation="horizontal"></LinearLayout>
+-->
     <ListView
         android:id="@+id/listView"
         android:layout_width="0dp"

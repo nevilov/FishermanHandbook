@@ -30,7 +30,8 @@ public class TextContent extends AppCompatActivity {
     private String [] titleFish = {"Сом", "Карась", "Карп"};
 
     /*BAIT*/
-    private int [] arrayBait = {R.string.BaitInfo_Bread}; //Массив для снастей
+    private int [] arrayBait = {R.string.BaitInfo_Bread, R.string.BaitInfo_Kukuruza }; //Массив для снастей
+
 
     /*TACKLE*/
     private int [] arrayTackle = {R.string.TackleInfo_FishingRod};

@@ -19,9 +19,9 @@
         <item>Червяк</item>
     </string-array>
     <string-array name="bait_last">
-        <item>Популярно</item>
-        <item>Популярно</item>
-        <item>Популярно</item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
 
 
@@ -31,9 +31,9 @@
         <item>Донная снать (Донка)</item>
     </string-array>
     <string-array name="tackle_last">
-        <item>Популярно</item>
-        <item>Популярно</item>
-        <item>Популярно</item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
 
 </resources>
