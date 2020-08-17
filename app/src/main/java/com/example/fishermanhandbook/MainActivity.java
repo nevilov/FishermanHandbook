@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private int [] ArrayFishImages = new int[]{R.drawable.som,R.drawable.karas,R.drawable.karp};
-    private int [] ArrayBaitImages = new int[]{R.drawable.som,R.drawable.karas,R.drawable.karp};
-    private int [] ArrayTackleImages = new int []{R.drawable.som,R.drawable.karas,R.drawable.karp};
+    private int [] ArrayBaitImages = new int[]{R.drawable.bestbait1,R.drawable.kukuruza1,R.drawable.chervyak_bait};
+    private int [] ArrayTackleImages = new int []{R.drawable.tackle1,R.drawable.tackle2,R.drawable.tackle3};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

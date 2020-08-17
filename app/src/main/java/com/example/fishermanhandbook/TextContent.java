@@ -26,15 +26,18 @@ public class TextContent extends AppCompatActivity {
 
     /*FISH*/
     private int [] arrayFish = { R.string.FishInfo_Som, R.string.FishInfo_Karas, R.string.FishInfo_Karp}; //Массив для рыб, индекс элементов массива arrays должны совпадать с номером information
-    private int [] ImageFishArray = {R.drawable.som, R.drawable.karas, R.drawable.karp}; //Массив для картинок с рыбами
+    private int [] ArrayFishImages = {R.drawable.som, R.drawable.karas, R.drawable.karp}; //Массив для картинок с рыбами
     private String [] titleFish = {"Сом", "Карась", "Карп"};
 
     /*BAIT*/
-    private int [] arrayBait = {R.string.BaitInfo_Bread, R.string.BaitInfo_Kukuruza }; //Массив для снастей
-
+    private int [] arrayBait = {R.string.BaitInfo_Bread, R.string.BaitInfo_Kukuruza,R.string.BaitInfo_Chervyak }; //Массив для снастей
+    private int [] ArrayBaitImages = new int[]{R.drawable.bestbait1,R.drawable.kukuruza1,R.drawable.chervyak_bait};
+    private String [] titleBait = {"Лучшая прикормка", "Кукуруза", "Червяк"};
 
     /*TACKLE*/
-    private int [] arrayTackle = {R.string.TackleInfo_FishingRod};
+    private int [] arrayTackle = {R.string.TackleInfo_FishingRod,R.string.TackleInfo_Spin, R.string.TackleInfo_Donka};
+    private int [] ArrayTackleImages = new int []{R.drawable.tackle1,R.drawable.tackle2,R.drawable.tackle3};
+    private String [] titleTackle = {"Удочка", "Спиннинг", "Донка"};
 
 
     private ImageView iContent;
@@ -59,14 +62,18 @@ public class TextContent extends AppCompatActivity {
         switch (category) {
             case 0:
                 TextContent.setText(arrayFish[position]); // Мы передаем в TW массив, индексом которого является номер элемента
-                iContent.setImageResource(ImageFishArray[position]);
+                iContent.setImageResource(ArrayFishImages[position]);
                 actionBar.setTitle(titleFish[position]);
                 break;
             case 1:
                 TextContent.setText(arrayBait[position]);
+                iContent.setImageResource(ArrayBaitImages[position]);
+                actionBar.setTitle(titleBait[position]);
                 break;
             case 2:
                 TextContent.setText(arrayTackle[position]);
+                iContent.setImageResource(ArrayTackleImages[position]);
+                actionBar.setTitle(titleTackle[position]);
                 break;
 
         }

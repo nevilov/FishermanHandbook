@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +25,9 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
 
     public CustomArrayAdapter(@NonNull Context context, int resource, List<ListItemClass> listItem, LayoutInflater inflater) {
         super(context, resource, listItem);
-
         this.inflater = inflater;
         this.listItem = listItem;
         this.context = context;
-
-
 
     }
 
@@ -60,5 +58,6 @@ public class CustomArrayAdapter extends ArrayAdapter<ListItemClass> {
         TextView secName;
         ImageView image;
     }
+
 }
 
