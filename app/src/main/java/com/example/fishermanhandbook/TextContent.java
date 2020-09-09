@@ -102,7 +102,7 @@ public class TextContent extends AppCompatActivity {
                 case "Средний":
                     TextContent.setTextSize(18);
                     break;
-                case "Большоей":
+                case "Большой":
                     TextContent.setTextSize(24);
                     break;
             }
